@@ -1,6 +1,7 @@
 package com.codeborne.selenide.impl;
 
 import com.codeborne.selenide.Config;
+import com.codeborne.selenide.proxy.DownloadedFile;
 import com.codeborne.selenide.proxy.FileDownloadFilter;
 import com.codeborne.selenide.proxy.SelenideProxyServer;
 import com.google.common.base.Predicate;
@@ -44,6 +45,9 @@ public class DownloadFileWithProxyServer {
     FileDownloadFilter filter = proxyServer.responseFilter("download");
     filter.activate();
     try {
+      waiter.wait(filter, new PreviousDownloadsCompleted(), timeout, config.pollingInterval());
+
+      filter.reset();
       clickable.click();
 
       waiter.wait(filter, new HasDownloads(), timeout, config.pollingInterval());
@@ -87,16 +91,34 @@ public class DownloadFileWithProxyServer {
     }
   }
 
+  private static class PreviousDownloadsCompleted implements Predicate<FileDownloadFilter> {
+    private int downloadsCount = -1;
+
+    @Override
+    public boolean apply(FileDownloadFilter filter) {
+      try {
+        return downloadsCount == filter.getDownloadedFiles().size();
+      }
+      finally {
+        downloadsCount = filter.getDownloadedFiles().size();
+      }
+    }
+  }
+
   private File firstDownloadedFile(WebElementSource anyClickableElement,
                                    FileDownloadFilter filter, long timeout) throws FileNotFoundException {
-    List<File> files = filter.getDownloadedFiles();
+    List<DownloadedFile> files = filter.getDownloadedFiles();
     if (files.isEmpty()) {
       throw new FileNotFoundException("Failed to download file " + anyClickableElement +
-        " in " + timeout + " ms." + filter.getResponses());
+        " in " + timeout + " ms." + filter.responsesAsString());
     }
 
-    log.info("Downloaded file: {}", files.get(0).getAbsolutePath());
-    log.info("Just in case, all intercepted responses: {}", filter.getResponses());
-    return files.get(0);
+    log.info(filter.downloadedFilesAsString());
+    log.info("Just in case, all intercepted responses: {}", filter.responsesAsString());
+    return files.stream().sorted(new DownloadDetector()).findFirst()
+      .orElseThrow(() ->
+        new FileNotFoundException("Failed to download file " + anyClickableElement +
+          " in " + timeout + " ms." + filter.responsesAsString())
+      ).getFile();
   }
 }

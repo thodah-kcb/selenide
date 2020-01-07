@@ -6,7 +6,7 @@ ext {
   testngVersion = '6.9.10'
   seleniumVersion = '4.0.0-alpha-2'
   junitVersion = '5.5.2'
-  jettyVersion = '9.4.21.v20190926'
+  jettyVersion = '9.4.25.v20191220'
 }
 
 dependencies {
@@ -15,10 +15,10 @@ dependencies {
   }
   api('io.github.bonigarcia:webdrivermanager:3.7.1')
 
-  implementation('net.lightbody.bmp:browsermob-core:2.1.5') {
-    exclude group: 'com.google.guava', module: 'guava'
-  }
-  implementation('org.slf4j:slf4j-api:1.7.26')
+  implementation('com.browserup:browserup-proxy-core:2.0.1')
+  implementation('io.netty:netty-all:4.1.44.Final')
+  implementation('xyz.rogfam:littleproxy:2.0.0-beta-5')
+  implementation('org.slf4j:slf4j-api:1.7.30')
 
   compileOnly("org.junit.jupiter:junit-jupiter-api:$junitVersion")
   compileOnly("org.junit.jupiter:junit-jupiter-migrationsupport:$junitVersion")
@@ -32,9 +32,10 @@ dependencies {
   testImplementation('org.mockito:mockito-core:3.1.0')
   testImplementation('commons-fileupload:commons-fileupload:1.4')
   testImplementation('com.automation-remarks:video-recorder-junit5:2.0')
-  testImplementation('org.assertj:assertj-core:3.13.2')
+  testImplementation("org.assertj:assertj-core:3.14.0")
+
   testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-  testRuntimeOnly('org.slf4j:slf4j-simple:1.7.28')
+  testRuntimeOnly('org.slf4j:slf4j-simple:1.7.30')
 }
 
 task libsProd(type: Sync) {

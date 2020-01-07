@@ -1,5 +1,25 @@
 # Changelog
 
+## 5.7.0
+* #1030 Add method Selenide.executeAsyncScript()  --  thanks to Thierry Ygé @tyge68 for PR #1031
+
+## 5.6.0 (released 26.12.2019)
+* #1019 Migrate from BrowserMob to BrowserUp proxy   --  thanks to Aliaksandr Rasolka for PR #1020
+
+## 5.5.1 (released 29.11.2019)
+* #1008 add support for system property "chromeoptions.mobileEmulation"  --  see PR #1011
+* #1016 deprecate method `Selenide.close()`  --  see PR #1017
+
+## 5.5.0 (released 31.10.2019)
+* #923 Migrate from JUL to SLF4J  --  thanks to Gleb Schukin @gschukin for PR #926
+* Remove HtmlUnit dependency  --  thanks to Aliaksandr Rasolka for PR #1003
+* Remove PhantomJS dependency  --  thanks to Aliaksandr Rasolka for PR #998
+* #1000 make `$.execute(command)` generic: it now can return any value, or even be Void  --  see PR #1001
+* #999 make `holdBrowserOpen` setting work again  --  see PR #1005
+* #907 take screenshot in case of `DialogTextMismatch` error  --  thanks to Nick Holloway @nwholloway for PR #986
+* refactor ScreenShotLaboratory  --  thanks to @SeleniumTestAB for PRs #1004 and #1006
+* add "selenide.remote" to exception info (in addition to "selenide.url" and "selenide.baseUrl")  --  see commit ba4f0544448de
+
 ## 5.4.1 (released 16.10.2019)
 * bugfix: close webdriver in the end of all tests
 

@@ -3,6 +3,7 @@ package com.codeborne.selenide.impl;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Driver;
 import com.google.common.base.Predicate;
+import org.checkerframework.checker.nullness.qual.Nullable;
 import org.openqa.selenium.WebElement;
 
 import javax.annotation.Nullable;

@@ -79,7 +79,7 @@ public class Configuration {
   /**
    * Which browser to use.
    * Can be configured either programmatically or by system property "-Dselenide.browser=ie".
-   * Supported values: "chrome", "firefox", "legacy_firefox", "ie", "opera", "edge"
+   * Supported values: "chrome", "firefox", "legacy_firefox" (upto ESR 52), "ie", "opera", "edge"
    * <br>
    * Default value: "chrome"
    */
@@ -269,7 +269,7 @@ public class Configuration {
    * <br>
    * Default: empty (meaning that Selenide will detect current machine's ip/hostname automatically)
    *
-   * @see net.lightbody.bmp.client.ClientUtil#getConnectableAddress()
+   * @see com.browserup.bup.client.ClientUtil#getConnectableAddress()
    */
   public static String proxyHost = defaults.proxyHost();
 
