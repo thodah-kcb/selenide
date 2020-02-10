@@ -12,7 +12,7 @@ Function Get-Token
     };
 
     $headers = @{
-        "content-type" = "application/json")
+        "content-type" = "application/json"
     };
 
     try
