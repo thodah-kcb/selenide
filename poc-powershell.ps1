@@ -20,7 +20,7 @@ Function Get-Token
         $response = Invoke-RestMethod "$Env.auth0_url" -Method Post -Body $body -Headers $headers;
         $token = $response.access_token;
         
-        Write-Host "$token"
+        Write-Host $token
         
         return $token;
     }
