@@ -15,7 +15,7 @@ Function Get-Token
     {
         Write-Host @body;
         
-        $response = Invoke-RestMethod -Uri $Env:auth0_url -Method Post -ContentType "application/json" -Body $body;
+        $response = Invoke-RestMethod -Uri $Env:auth0_url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
 
         Write-Output $response;
         
