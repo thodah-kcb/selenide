@@ -13,16 +13,8 @@ Function Get-Token
 
     try
     {
-        Write-Host @body;
-        
         $response = Invoke-RestMethod -Uri $Env:auth0_url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
-
-        Write-Output $response;
-        
         $token = $response.access_token;
-        
-        Write-Output $token;
-        
         return $token;
     }
     catch
