@@ -11,15 +11,11 @@ Function Get-Token
         audience = "https://dev-iqbfcaun.eu.auth0.com/api/v2/"
     };
 
-    $headers = @{
-        "content-type" = "application/json"
-    };
-
     try
     {
-        Write-Host $body;
+        Write-Host $body | Out-String
         
-        $response = Invoke-RestMethod "$Env.auth0_url" -Method Post -Body $body -Headers $headers;
+        $response = Invoke-RestMethod -Uri $Env.auth0_url -Method Post -ContentType "application/json" -Body $body;
         $token = $response.access_token;
         
         Write-Host $token;
