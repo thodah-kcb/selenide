@@ -17,10 +17,12 @@ Function Get-Token
 
     try
     {
+        Write-Host $body;
+        
         $response = Invoke-RestMethod "$Env.auth0_url" -Method Post -Body $body -Headers $headers;
         $token = $response.access_token;
         
-        Write-Host $token
+        Write-Host $token;
         
         return $token;
     }
@@ -30,8 +32,8 @@ Function Get-Token
         $reader = New-Object System.IO.StreamReader($result);
         $reader.BaseStream.Position = 0;
         $reader.DiscardBufferedData();
-        $responseBody = $reader.ReadToEnd() | ConvertFrom-Json
-        Write-Host "ERROR: $($responseBody.error)"
+        $responseBody = $reader.ReadToEnd() | ConvertFrom-Json;
+        Write-Host "ERROR: $($responseBody.error)";
         return;
     }
 }
