@@ -37,3 +37,5 @@ Function Get-Token
         return;
     }
 }
+
+Get-Token
