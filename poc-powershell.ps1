@@ -35,6 +35,8 @@ Function Get-Token
 
 Write-Host "Hello there"
 
-Write-Host "THIS IS A SECRET: $(auth0_url)"
+Write-Host "THIS IS A SECRET: $Env:url"
+
+# Write-Host "THIS IS A SECRET: $(auth0_url)"
 
 # Get-Token
