@@ -13,8 +13,6 @@ Function Get-Token
 
     try
     {
-        Write-Host "THIS IS A SECRET: $(auth0_url)"
-        
         Write-Host @body
         
         $response = Invoke-RestMethod -Uri $Env:url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
@@ -35,4 +33,8 @@ Function Get-Token
     }
 }
 
-Get-Token
+Write-Host "Hello there"
+
+Write-Host "THIS IS A SECRET: $(auth0_url)"
+
+# Get-Token
