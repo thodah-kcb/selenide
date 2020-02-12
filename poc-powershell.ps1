@@ -5,15 +5,15 @@ Function Get-Token
     [CmdletBinding()]
 
     $body = @{
-        client_id = $Env:auth0_clientid
-        client_secret = $Env:auth0_clientSecret
+        client_id = $Env:clientid
+        client_secret = $Env:clientSecret
         grant_type = "client_credentials"
         audience = "https://dev-iqbfcaun.eu.auth0.com/api/v2/"
     };
 
     try
     {
-        $response = Invoke-RestMethod -Uri $Env:auth0_url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
+        $response = Invoke-RestMethod -Uri $Env:url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
         $token = $response.access_token;
         return $token;
     }
