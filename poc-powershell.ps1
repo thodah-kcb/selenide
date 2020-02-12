@@ -13,8 +13,10 @@ Function Get-Token
 
     try
     {
-        Write-Host "THIS IS A SECRET: $(auth0_url)";
-        Write-Host @body;
+        Write-Host "THIS IS A SECRET: $(auth0_url)"
+        
+        Write-Host @body
+        
         $response = Invoke-RestMethod -Uri $Env:url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
         $token = $response.access_token;
         return $token;
@@ -26,7 +28,9 @@ Function Get-Token
         $reader.BaseStream.Position = 0;
         $reader.DiscardBufferedData();
         $responseBody = $reader.ReadToEnd() | ConvertFrom-Json;
-        Write-Host "ERROR: $($responseBody.error)";
+        
+        Write-Host "ERROR: $($responseBody.error)"
+        
         return;
     }
 }
