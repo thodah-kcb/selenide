@@ -33,8 +33,8 @@ Function Get-Token
 
 Write-Host "Hello there"
 
-$token = Get-Token
+$theToken = Get-Token
 
-Write-Host "##vso[task.setvariable variable=token;isSecret=false;isOutput=true;]$token"
+Write-Host $theToken
 
-# Write-Host $token
+Write-Host "##vso[task.setvariable variable=bearertoken;isSecret=false;isOutput=true;]$theToken"
