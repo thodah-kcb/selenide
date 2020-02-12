@@ -13,7 +13,7 @@ Function Get-Token
 
     try
     {
-        Write-Host $body|ConvertTo-Json
+        Write-Host @body
         $response = Invoke-RestMethod -Uri $Env:url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
         $token = $response.access_token;
         return $token;
