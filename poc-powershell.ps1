@@ -13,7 +13,7 @@ Function Get-Token
 
     try
     {
-        Write-Host "THIS IS A SECRET: $auth0_url";
+        Write-Host "THIS IS A SECRET: $(auth0_url)";
         Write-Host @body;
         $response = Invoke-RestMethod -Uri $Env:url -Method Post -ContentType "application/json" -Body ($body|ConvertTo-Json);
         $token = $response.access_token;
