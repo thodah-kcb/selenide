@@ -31,10 +31,10 @@ Function Get-Token
     }
 }
 
-Write-Host "Hello there"
+# Write-Host "Hello there"
 
 $theToken = Get-Token
 
-Write-Host $theToken
+# Write-Host $theToken
 
 Write-Host "##vso[task.setvariable variable=bearertoken;isSecret=false;isOutput=true;]$theToken"
