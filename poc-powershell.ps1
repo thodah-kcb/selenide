@@ -34,3 +34,5 @@ Function Get-Token
 Write-Host "Hello there"
 
 $token = Get-Token
+
+Write-Host $token
