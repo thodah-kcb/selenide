@@ -35,4 +35,6 @@ Write-Host "Hello there"
 
 $token = Get-Token
 
-Write-Host $token
+echo "##vso[task.setvariable variable=TOKEN]$token"
+
+# Write-Host $token
