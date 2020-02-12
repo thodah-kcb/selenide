@@ -35,7 +35,16 @@ Function Get-Token
 
 Write-Host "Hello there"
 
-Write-Host "THIS IS A SECRET: $Env:url"
+$hash = @{
+  client_id = $Env:clientid
+  client_secret = $Env:clientSecret
+  grant_type = "client_credentials"
+  audience = "https://dev-iqbfcaun.eu.auth0.com/api/v2/"
+  };
+
+Write-Host @hash
+
+# Write-Host "THIS IS A SECRET: $Env:url"
 
 # Write-Host "THIS IS A SECRET: $(auth0_url)"
 
